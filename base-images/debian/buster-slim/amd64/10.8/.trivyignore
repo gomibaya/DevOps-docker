@@ -1,0 +1,28 @@
+# Rev:202010215
+#
+# libsystemd0, libudev0
+#  Accept the risk
+CVE-2019-3843
+CVE-2019-3844
+
+# Afecta a ARM
+CVE-2018-12886
+
+# Afecta a POWER9. Sin consecuencias
+CVE-2019-15847
+
+# Afecta a POWERPC. Sin consecuencias
+CVE-2020-1751
+
+# glibc
+# Accept the risk
+CVE-2020-1752
+CVE-2021-3326
+
+# gnutls30
+# Accept the risk
+CVE-2020-24659
+
+# libidn2
+# Accept the risk
+CVE-2019-12290
