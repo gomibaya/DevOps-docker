@@ -1,0 +1,4 @@
+- 20210906
+  baseimages. buster de 10.8 actualizado a 10.10
+  baseimages. script build, agregado --no-cache. a script build y update algo más de información de salida.
+  baseimages. buster version 0.1.2

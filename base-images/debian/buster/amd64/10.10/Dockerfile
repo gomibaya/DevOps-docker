@@ -1,7 +1,12 @@
-FROM %arch%/debian:%debianversion%
+#
+# NOTE: THIS DOCKERFILE IS GENERATED VIA "update.sh"
+#
+# PLEASE DO NOT EDIT IT DIRECTLY.
+#
+FROM amd64/debian:buster
 
 LABEL maintainer="esteban@gominet.net"
-LABEL version="%localversion%"
+LABEL version="0.1.2"
 
 ######################
 # SECURITY FIXES
@@ -64,6 +69,8 @@ LABEL version="%localversion%"
 #  #  En Debian buster etiquetado como minur-issue
 #  En Debian buster etiquetado como minur-issue
 #  IGNORAR EN TRIVY
+
+
   
 # runtime dependencies
 RUN echo "deb http://deb.debian.org/debian buster-backports main" > /etc/apt/sources.list.d/buster-backports.list; \ 

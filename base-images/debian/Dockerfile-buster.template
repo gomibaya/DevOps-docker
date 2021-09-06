@@ -50,6 +50,21 @@ LABEL version="%localversion%"
 #  https://security-tracker.debian.org/tracker/CVE-2019-12290
 #  No hay backport. En Debian etiquetado como minor-issue
 #  IGNORAR EN TRIVY
+#
+#  20210906. versión 0.1.2
+#
+# - CVE-2021-33574. libc-bin,libc6 2.28.10. Solucionado en unstable, hay fix en upstream, pero aun no realizado backport en buster
+#  https://sourceware.org/bugzilla/show_bug.cgi?id=27896
+#  https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=989147
+#  https://security-tracker.debian.org/tracker/CVE-2021-33574
+#  En Debian buster etiquetado como minur-issue
+#  IGNORAR EN TRIVY
+#
+# - CVE-2021-35942. libc-bin,libc 2.28.10. Solucionado en buster. hay fix en upstream, pero aun no realizado backport a buster
+#  #  En Debian buster etiquetado como minur-issue
+#  En Debian buster etiquetado como minur-issue
+#  IGNORAR EN TRIVY
+
 
   
 # runtime dependencies

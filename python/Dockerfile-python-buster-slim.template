@@ -1,4 +1,4 @@
-FROM %arch%/debian:%debianversion%
+FROM %arch%/python:%debianversion%
 
 LABEL maintainer="esteban@gominet.net"
 LABEL version="%localversion%"
@@ -50,40 +50,27 @@ LABEL version="%localversion%"
 #  https://security-tracker.debian.org/tracker/CVE-2019-12290
 #  No hay backport. En Debian etiquetado como minor-issue
 #  IGNORAR EN TRIVY
-#
-#  20210906. versión 0.1.2
-#
-# - CVE-2021-33574. libc-bin,libc6 2.28.10. Solucionado en unstable, hay fix en upstream, pero aun no realizado backport en buster
-#  https://sourceware.org/bugzilla/show_bug.cgi?id=27896
-#  https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=989147
-#  https://security-tracker.debian.org/tracker/CVE-2021-33574
-#  En Debian buster etiquetado como minur-issue
-#  IGNORAR EN TRIVY
-#
-# - CVE-2021-35942. libc-bin,libc 2.28.10. Solucionado en buster. hay fix en upstream, pero aun no realizado backport a buster
-#  #  En Debian buster etiquetado como minur-issue
-#  En Debian buster etiquetado como minur-issue
-#  IGNORAR EN TRIVY
-  
-# runtime dependencies
-RUN echo "deb http://deb.debian.org/debian buster-backports main" > /etc/apt/sources.list.d/buster-backports.list; \ 
-    apt-get update; \
-    DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
-        libsystemd0/buster-backports \
-        libudev1/buster-backports \
-    ; \
-    DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
-        ca-certificates \
-        jq \
-        less \
-        nano \
-        rsync \
-        unzip \
-        xz-utils \
-    ; \
-    DEBIAN_FRONTEND=noninteractive apt-get upgrade -y; \
-    apt clean
 
-# No se elimina /var/lib/apt/lits a propósito. Cualquier creación a partir de esta imagen base realizará un update.
-# Con esto serán rdiff y no descarga completa de listado.
-    
+# En entornos windows, se atasca un poco con proxy, virtualizacion de red, etc.. , hay que 
+# dejarle aire para establecer las conexiones.
+#
+ARG PIP_DEFAULT_TIMEOUT=100
+ENV PIP_DEFAULT_TIMEOUT=${PIP_DEFAULT_TIMEOUT}
+
+# En desarrollo, para reducir las operaciones.
+RUN apt-get update; \
+    DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \ 
+        zip
+        python3 \
+        python3-pip \
+        ; \
+    apt clean; \
+    rm -rf /var/lib/apt/lists/*
+RUN pip3 install virtualenv \
+    tox \
+    pylama \
+    bandit \
+    && mkdir -p /pythondev/output /pythondev/tests /mnt/git
+WORKDIR /mnt/git
+
+#ADD docker/rsyncdev.sh /pythondev/rsyncdev.sh

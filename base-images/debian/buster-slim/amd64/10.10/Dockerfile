@@ -1,7 +1,12 @@
-FROM %arch%/debian:%debianversion%
+#
+# NOTE: THIS DOCKERFILE IS GENERATED VIA "update.sh"
+#
+# PLEASE DO NOT EDIT IT DIRECTLY.
+#
+FROM amd64/debian:buster-slim
 
 LABEL maintainer="esteban@gominet.net"
-LABEL version="%localversion%"
+LABEL version="0.1.2"
 
 ######################
 # SECURITY FIXES
