@@ -6,7 +6,7 @@
 FROM amd64/debian:buster-slim
 
 LABEL maintainer="esteban@gominet.net"
-LABEL version="0.1.2"
+LABEL version="0.1.3"
 
 ######################
 # SECURITY FIXES
@@ -69,6 +69,14 @@ LABEL version="0.1.2"
 #  #  En Debian buster etiquetado como minur-issue
 #  En Debian buster etiquetado como minur-issue
 #  IGNORAR EN TRIVY
+#
+#  20210911. versión 0.1.3
+#
+# - CVE-2021-40528. libgcrypt20 . Solucionado en bookworm, pero aun no realizado backport en buster ni bullseye
+#  https://security-tracker.debian.org/tracker/CVE-2021-40528
+#  En Debian bullseye etiquetado como minor-issue
+#  IGNORAR EN TRIVY
+#
   
 # runtime dependencies
 RUN echo "deb http://deb.debian.org/debian buster-backports main" > /etc/apt/sources.list.d/buster-backports.list; \ 

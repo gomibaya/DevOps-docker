@@ -1,3 +1,4 @@
+# Rev:20210911
 # Rev:20210906
 # Rev:202010215
 #
@@ -33,3 +34,8 @@ CVE-2019-12290
 # Accept the risk
 CVE-2021-33574
 CVE-2021-35942
+
+# 20210911
+# libgcrypt20
+# Accept the risk
+CVE-2021-40528

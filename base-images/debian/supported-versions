@@ -1,2 +1,4 @@
 buster-slim|https://github.com/debuerreotype/docker-debian-artifacts/raw/dist-%ARCH%/buster/slim/rootfs.debian_version
 buster|https://github.com/debuerreotype/docker-debian-artifacts/raw/dist-%ARCH%/buster/rootfs.debian_version
+bullseye-slim|https://github.com/debuerreotype/docker-debian-artifacts/raw/dist-%ARCH%/bullseye/slim/rootfs.debian_version
+bullseye|https://github.com/debuerreotype/docker-debian-artifacts/raw/dist-%ARCH%/bullseye/rootfs.debian_version
