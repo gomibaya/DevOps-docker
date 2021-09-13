@@ -27,8 +27,7 @@ for rawversion in ${versions}; do
     for arch in "${archs}"; do
         rawversion=$(echo $rawversion | awk -v ARCH=$arch -F'|' '{gsub(/%ARCH%/,ARCH); print $0}')
         version=$(echo $rawversion | awk -F'|' '{print $1}')
-        fullversion=$(wget -qO- $(echo $rawversion | awk -F'|' '{print $2}'))
-        dir=$(echo $rawversion | awk -v ARCH=$arch -v FULLVERSION=$fullversion -F'|' '{printf "%s/%s/%s", $1, ARCH, FULLVERSION}')
+        dir=$(echo $rawversion | awk -v ARCH=$arch -v VERSION=$localversion -F'|' '{printf "%s/%s/%s", $1, ARCH, VERSION}')
         dockerfile=$dir/Dockerfile
         if [ ! -f $dockerfile ]; then
             echo "${version}:${arch} ERROR No previus dockerfile exists."
@@ -39,7 +38,6 @@ for rawversion in ${versions}; do
         cd $dir
         trivy image --severity HIGH,CRITICAL ${DOCKERUSERNAME}/devops-base:${version}
         cd $oldpwd
-        
     done
 done
 

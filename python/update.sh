@@ -26,8 +26,8 @@ for rawversion in ${versions}; do
             echo "${version}: Does not exists template $template"
             continue
         fi
-        fullversion=$(wget -qO- $(echo $rawversion | awk -F'|' '{print $2}'))
-        dir=$(echo $rawversion | awk -v ARCH=$arch -v FULLVERSION=$fullversion -F'|' '{printf "%s/%s/%s", $1, ARCH, FULLVERSION}')
+        fullversion=$(echo $rawversion | awk -F'|' '{print $2}')
+        dir=$(echo $rawversion | awk -v ARCH=$arch -v VERSION=$localversion -F'|' '{printf "%s/%s/%s", $1, ARCH, VERSION}')
 	echo "Dir: $dir"
         [ -d "$dir" ] || mkdir -p "$dir"
         dockerfile=$dir/Dockerfile
@@ -38,13 +38,13 @@ for rawversion in ${versions}; do
         generated_warning > $dir/Dockerfile
         cat $template >> $dir/Dockerfile
         sed -ri \
-            -e 's/%arch%/'"${arch}"'/' \
-            -e 's/%debianversion%/'"${version}"'/' \
+            -e 's|%debianversion%|'"${fullversion}"'|' \
             -e 's/%localversion%/'"${localversion}"'/' \
             "$dockerfile"
-            
         if [ -f $trivytemplate ]; then
-            cat $trivytemplate >> $dir/.trivyignore
+            cat $trivytemplate > $dir/.trivyignore
         fi
+        buildpyenvtemplate="buildpyenv-${version}.template"
+        cat $buildpyenvtemplate > $dir/buildpyenv.sh
     done
 done

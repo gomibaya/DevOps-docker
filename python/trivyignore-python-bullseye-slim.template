@@ -1,0 +1,16 @@
+# Rev:20210911
+# Rev:20210906
+#
+
+# 20210906
+# libc-bin,libc5
+# Accept the risk
+CVE-2021-33574
+
+# 20210911
+# libgcrypt20
+# Accept the risk
+CVE-2021-40528
+
+# Python 20210911
+# CVE-2021-29921

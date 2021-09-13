@@ -1,1 +1,1 @@
-python-buster-slim|gomibaya/devops-base:buster-slim-10.10
+python-bullseye-slim|gomibaya/devops-base:%ARCH%-bullseye-slim-11.0
